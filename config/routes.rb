@@ -1,5 +1,14 @@
 Rails.application.routes.draw do
+  # get 'notes/index'
+  # get 'notes/show'
+  # get 'notes/new'
+  # get 'notes/create'
+  # get 'notes/edit'
+  # get 'notes/update'
+  # get 'notes/destroy'
   root "home#index"
+
+  resources :notes
   # get 'home/index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
