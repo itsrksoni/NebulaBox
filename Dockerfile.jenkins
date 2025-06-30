@@ -9,9 +9,22 @@ RUN apt-get update && \
     echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null && \
     apt-get update && \
     apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin && \
+    usermod -aG docker jenkins && \
     rm -rf /var/lib/apt/lists/*
 
 # Let Jenkins use Docker
 RUN usermod -aG docker jenkins
 
 USER jenkins
+# FROM jenkins/jenkins:lts
+
+# USER root
+
+# # Install Docker CLI and Compose Plugin
+# RUN apt-get update && \
+#     apt-get install -y docker.io docker-compose-plugin && \
+#     usermod -aG docker jenkins && \
+#     chmod 666 /var/run/docker.sock || true && \
+#     chown -R jenkins:jenkins /var/jenkins_home
+
+# USER jenkins
